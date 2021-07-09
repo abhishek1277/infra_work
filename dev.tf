@@ -35,60 +35,14 @@ resource "azurerm_template_deployment" "example" {
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "hostingPlanName": {
-      "type": "string",
-      "minLength": 1
-    },
-    "skuName": {
-      "type": "string",
-      "defaultValue": "F1",
-      "allowedValues": [
-        "F1",
-        "D1",
-        "B1",
-        "B2",
-        "B3",
-        "S1",
-        "S2",
-        "S3",
-        "P1",
-        "P2",
-        "P3",
-        "P4"
-      ],
-      "metadata": {
-        "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
-      }
-    },
-    "skuCapacity": {
-      "type": "int",
-      "defaultValue": 1,
-      "minValue": 1,
-      "metadata": {
-        "description": "Describes plan's instance count"
-      }
-    }
-  },
-  "variables": {
-    "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]"
-  },
-  "resources": [
-    {
-      "apiVersion": "2015-08-01",
-      "name": "[parameters('hostingPlanName')]",
-      "type": "Microsoft.Web/serverfarms",
-      "location": "[resourceGroup().location]",
-      "tags": {
-        "displayName": "HostingPlan"
-      },
-      "sku": {
-        "name": "[parameters('skuName')]",
-        "capacity": "[parameters('skuCapacity')]"
-      },
-      "properties": {
-        "name": "[parameters('hostingPlanName')]"
-      }
+  "resources":[{
+      "apiVersion": "2018-11-01",
+      "name": "NewRelic.Azure.WebSites.Extension",
+      "type": "Microsoft.Web/sites/siteextensions",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
+      ]
+    }]
   DEPLOY
    deployment_mode = "Incremental"
 }
