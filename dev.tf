@@ -42,8 +42,9 @@ resource "azurerm_template_deployment" "example" {
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
       ]
-    }]
-  DEPLOY
+    }],
+}
+DEPLOY
    deployment_mode = "Incremental"
 }
 
