@@ -27,3 +27,27 @@ resource "azurerm_app_service" "example" {
   }
   }
 
+resource "azurerm_template_deployment" "example" {
+  name                = "acctesttemplate-01"
+  resource_group_name = azurerm_resource_group.example.name
+
+  template_body = <<DEPLOY
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  
+  "resources":[{
+      "apiVersion": "2018-11-01",
+      "name": "NewRelic.Azure.WebSites.Extension",
+      "type": "siteextensions",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('example-app-service3245'))]"
+      ]
+    }]
+}
+DEPLOY
+
+
+
+  deployment_mode = "Incremental"
+}
