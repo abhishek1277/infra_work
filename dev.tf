@@ -48,10 +48,11 @@ resource "azurerm_template_deployment" "example" {
           }
     }
   ]
+   deployment_mode = "Incremental"
 }
 
 
 
 
-  deployment_mode = "Incremental"
-}
+ 
+
