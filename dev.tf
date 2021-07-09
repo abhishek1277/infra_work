@@ -38,7 +38,7 @@ resource "azurerm_template_deployment" "example" {
   
   "resources":[{
       "apiVersion": "2018-11-01",
-      "name": "NewRelic.Azure.WebSites.Extension",
+      "name": "NewRelic.Azure.WebSites",
       "type": "siteextensions",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('example-app-service3245'))]"
