@@ -1,12 +1,29 @@
 
-resource "azurerm_resource_group" "rg1" {
-  name = "devrg"
-  location = "eastus"
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "example" {
-  name                = "example1-vnet"
-  address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.rg1.location
-  resource_group_name = azurerm_resource_group.rg1.name
+resource "azurerm_app_service_plan" "example" {
+  name                = "example-appserviceplan123"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
 }
+
+resource "azurerm_app_service" "example" {
+  name                = "example-app-service3245"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  app_service_plan_id = azurerm_app_service_plan.example.id
+
+  site_config {
+    dotnet_framework_version = "v4.0"
+    scm_type                 = "LocalGit"
+  }
+  }
+
