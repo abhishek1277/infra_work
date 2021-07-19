@@ -51,9 +51,9 @@ resource "azurerm_template_deployment" "example" {
             "apiVersion": "2018-11-01",
             "name": "[concat(parameters('sites_example_app_service3245_name'), '/NewRelic.Azure.WebSites.Extension')]",
             "location": "West Europe",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_example_app_service3245_name'))]"
-            ]
+#             "dependsOn": [
+#                 "[resourceId('Microsoft.Web/sites', parameters('sites_example_app_service3245_name'))]"
+#             ]
     }
   ]
 }
