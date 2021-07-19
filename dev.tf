@@ -42,7 +42,7 @@ resource "azurerm_template_deployment" "example" {
         "serverfarms_example_appserviceplan123_externalid": {
             "value": null
         }
-    }
+    },
   "resources":[
     {
             "type": "Microsoft.Web/sites/siteextensions",
