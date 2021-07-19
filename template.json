@@ -1,19 +1,18 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
         "sites_example_app_service3245_name": {
             "defaultValue": "example-app-service3245",
             "type": "String"
         },
         "serverfarms_example_appserviceplan123_externalid": {
-            "defaultValue": "/subscriptions/3457d5d0-1535-40c6-85fb-cb1919104698/resourceGroups/example-resources/providers/Microsoft.Web/serverfarms/example-appserviceplan123",
+             "defaultValue": "/subscriptions/3457d5d0-1535-40c6-85fb-cb1919104698/resourceGroups/example-resources/providers/Microsoft.Web/serverfarms/example-appserviceplan123",
             "type": "String"
         }
     },
-    "variables": {},
-    "resources": [
-        {
+  "resources":[
+     {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
             "name": "[parameters('sites_example_app_service3245_name')]",
@@ -52,15 +51,14 @@
                 "redundancyMode": "None"
             }
         },
-        
-        {
+    {
             "type": "Microsoft.Web/sites/siteextensions",
             "apiVersion": "2018-11-01",
             "name": "[concat(parameters('sites_example_app_service3245_name'), '/NewRelic.Azure.WebSites.Extension')]",
             "location": "West Europe",
-            "dependsOn": [
+      "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', parameters('sites_example_app_service3245_name'))]"
             ]
-        }
-    ]
+    }
+  ]
 }
