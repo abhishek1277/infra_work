@@ -34,6 +34,9 @@ resource "azurerm_template_deployment" "example" {
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "variables": {
+    "webSiteName": "example-app-service3245"
+  },
   "parameters": {
         "sites_example_app_service3245_name": {
             "defaultValue": "example-app-service3245",
@@ -52,7 +55,7 @@ resource "azurerm_template_deployment" "example" {
             "name": "[concat(parameters('sites_example_app_service3245_name'), '/NewRelic.Azure.WebSites.Extension')]",
             "location": "West Europe",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('example-app-service3245'))]"
+        "[resourceId('Microsoft.Web/sites', variables('webSiteName'))]"
       ]
     }
   ]
