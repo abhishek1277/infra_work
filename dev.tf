@@ -37,10 +37,12 @@ resource "azurerm_template_deployment" "example" {
   "contentVersion": "1.0.0.0",
   "parameters": {
         "sites_example_app_service3245_name": {
-            "value": null
+            "defaultValue": "example-app-service3245",
+            "type": "String"
         },
         "serverfarms_example_appserviceplan123_externalid": {
-            "value": null
+             "defaultValue": "/subscriptions/3457d5d0-1535-40c6-85fb-cb1919104698/resourceGroups/example-resources/providers/Microsoft.Web/serverfarms/example-appserviceplan123",
+            "type": "String"
         }
     },
   "resources":[
