@@ -35,14 +35,17 @@ resource "azurerm_template_deployment" "example" {
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "resources":[{
-      "apiVersion": "2018-11-01",
-      "name": "NewRelic.Azure.WebSites.Extension",
-      "type": "Microsoft.Web/sites/siteextensions",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
-      ]
-    }],
+  "resources":[
+    {
+            "type": "Microsoft.Web/sites/siteextensions",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_example_app_service3245_name'), '/NewRelic.Azure.WebSites.Extension')]",
+            "location": "West Europe",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_example_app_service3245_name'))]"
+            ]
+    }
+  ]
 }
 DEPLOY
    deployment_mode = "Incremental"
