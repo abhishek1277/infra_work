@@ -5,6 +5,8 @@
 
 pr:
 - demo1
+trigger:
+- demo1
 
 pool:
   vmImage: ubuntu-latest
